@@ -13,7 +13,7 @@ searchBtn.addEventListener("click", () => {
   const searchText = searchInput.value;
   console.log(searchText);
 
-  const url = `http://openlibrary.org/search.json?q=${searchText}`;
+  const url = `https://openlibrary.org/search.json?q=${searchText}`;
   searchInput.value = "";
   spinner.classList.remove("d-none");
   spinner.classList.add("block");
