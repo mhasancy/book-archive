@@ -62,17 +62,15 @@ const displayResults = (books) => {
       <div class="card flex-row mb-3" style="max-width: 600px;">
         <div class="row g-0">
         <img src="${
-          book.cover_i
-            ? `${coverUrl}`
-            : `https://openlibrary.org/images/icons/avatar_book-sm.png`
+          book.cover_i ? `${coverUrl}` : `images/no-preview.png`
         }" class="img-fluid rounded-start" alt="" style="width: 180px; height:240px;" />
         </div>
         <div class="col-md-8 d-flex align-items-center">
             <div class="card-body d-flex flex-column align-items-start ">
                 <h5 class="card-title fw-bolder">${book.title}</h5>
-                <h6 class="card-title"><span class="text-primary">${
+                <h6 class="card-title">By<span class="text-primary">${
                   book.author_name
-                    ? `By ${book.author_name[0]}</span>`
+                    ? ` ${book.author_name[0]}</span>`
                     : `Author not available`
                 }</h6>
                 <h6 class="card-title">${
