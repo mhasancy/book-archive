@@ -1,99 +1,78 @@
-// const error = document.getElementById("error");
-// const searchCounter = document.getElementById("search-counter");
+//global variables
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const searchDiv = document.getElementById("search-div");
 const errorDiv = document.getElementById("error-div");
 const searchResultDiv = document.getElementById("search-results");
 const spinner = document.getElementById("spinner");
+
+//search button handler
 searchBtn.addEventListener("click", () => {
-  // clearSearch
-  clear();
-
+  // clearing messages and display
+  clearingDisplay();
   const searchText = searchInput.value;
-  console.log(searchText);
-
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
+
+  //enabling spinner
   searchInput.value = "";
   spinner.classList.remove("d-none");
   spinner.classList.add("block");
+  //fetch data from the server
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      //data error handler after fetch
       if (data.numFound === 0) {
-        errorHandler("error");
+        errorDiv.classList.remove("d-none");
+        errorDiv.classList.add("block");
+        removingSpinner();
+        //data display processing
       } else {
-        // console.log(data.docs);
         searchDiv.classList.remove("d-none");
         searchDiv.classList.add("block");
-        searchDiv.innerText = `${data.numFound} Books Found`;
+        searchDiv.innerText = `${data.numFound} books found`;
         return displayResults(data.docs);
-
-        //   searchCounter.classList.remove("d-none");
-        //   searchCounter.classList.add("block");
-        //   searchCounter.innerText = `${data.numFound} Books Found`;
-        // }
-        // error.innerHTML = "";
-        // searchCounter.innerHTML = "";
       }
     });
 });
-const clear = () => {
+
+//clearing display results, error log and results counter
+const clearingDisplay = () => {
   searchResultDiv.textContent = "";
   searchDiv.classList.remove("block");
   searchDiv.classList.add("d-none");
   errorDiv.classList.remove("block");
   errorDiv.classList.add("d-none");
-  // clearSpinner();
+};
+//removing spinner
+const removingSpinner = () => {
+  spinner.classList.remove("block");
+  spinner.classList.add("d-none");
 };
 
-const errorHandler = (received) => {
-  if (received === "error") {
-    errorDiv.classList.remove("d-none");
-    errorDiv.classList.add("block");
-    clearSpinner();
-  } else {
-    displayResults();
-  }
-};
-// const displayData = () => {
-//   console.log(searchText);
-
-//   // if (error === books.q) {
-//   //   error.innerText = "nothing";
-//   // }
-
-//   // searchCounter.innerText = data.numFound;
-// };
+//displaying results
 const displayResults = (books) => {
-  //   console.log(books);
-  // const searchCounter = document.getElementById("search-counter");
-  // const searchResults = document.getElementById("search-results");
-  // const searchCounterArr = [...books];
-
-  books.forEach((book) => {
-    console.log(book);
-    // searchCounter.innerText = searchCounterArr.length;
-    const CoverUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
-    ("https://openlibrary.org/images/icons/avatar_book-sm.png");
-    // console.log(book);
+  //looping data array through forEach
+  books.slice(0, 36).forEach((book) => {
+    const coverUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
     const div = document.createElement("div");
+    //dynamic div creation and setting loop result
     div.classList.add("col");
     div.innerHTML = `
-      <div class="card flex-row mb-3" style="max-width: 540px;">
+      <div class="card flex-row mb-3" style="max-width: 600px;">
         <div class="row g-0">
         <img src="${
           book.cover_i
-            ? `${CoverUrl}`
+            ? `${coverUrl}`
             : `https://openlibrary.org/images/icons/avatar_book-sm.png`
         }" class="img-fluid rounded-start" alt="" style="width: 180px; height:240px;" />
         </div>
         <div class="col-md-8 d-flex align-items-center">
             <div class="card-body d-flex flex-column align-items-start ">
-                <h5 class="card-title">${book.title}</h5>
-                <h6 class="card-title">${
+                <h5 class="card-title fw-bolder">${book.title}</h5>
+                <h6 class="card-title"><span class="text-primary">${
                   book.author_name
-                    ? `By ${book.author_name[0]}`
+                    ? `By ${book.author_name[0]}</span>`
                     : `Author not available`
                 }</h6>
                 <h6 class="card-title">${
@@ -104,20 +83,15 @@ const displayResults = (books) => {
                 <p class="card-text">${
                   book.first_publish_year
                     ? ` First published in : ${book.first_publish_year}`
-                    : `First published info not available`
-                }</p>
-                
+                    : `<span class="fst-italic">First published info not available</span>`
+                }</p>                
             </div>
         </div>
     </div>
 </div>
     `;
+    //appending dynamic data and removing spinner
     searchResultDiv.appendChild(div);
-    clearSpinner();
+    removingSpinner();
   });
-};
-
-const clearSpinner = () => {
-  spinner.classList.remove("block");
-  spinner.classList.add("d-none");
 };
