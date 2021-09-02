@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Archive</title>
+    <!-- tailwind css -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+
+<body class="mx-auto">
+    <header class="text-center mt-5">
+        <!-- header -->
+        <h1>Search Your Favorite Book</h1>
+    </header>
+    <main>
+        <!-- searchbox input and button -->
+        <section>
+            <div class="input-group mb-3 mx-auto mt-5 w-50">
+                <input id="search-input" type="text" class="form-control" placeholder="Write your favorite book name"
+                    aria-label="search-text" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="search-btn"
+                    onclick="loadData()">Search</button>
+            </div>
+        </section>
+        <!-- js file -->
+        <script src="js/api.js"></script>
+</body>
+
+</html>

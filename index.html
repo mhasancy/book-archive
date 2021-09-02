@@ -11,14 +11,84 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body>
-    <header></header>
+<body class="mx-auto">
+    <header class="text-center mt-5">
+        <!-- header -->
+        <h1>Search Your Favorite Book</h1>
+    </header>
     <main>
+        <!-- searchbox input and button -->
         <section>
-            <h1>Search Your Favorite Book</h1>
+            <div class="input-group mb-3 mx-auto mt-5 w-50">
+                <input id="search-input" type="text" class="form-control" placeholder="Write your favorite book name"
+                    aria-label="search-text" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="search-btn">Search</button>
+            </div>
         </section>
-        <section></section>
-        <section></section>
+        <!-- search results counter -->
+        <section class="w-50 mx-auto text-center">
+            <div id="search-div" class="p-3 mb-2 bg-light text-dark d-none"></div>
+
+            <!-- error handling -->
+
+            <div id="error-div" class="p-3 mb-2 bg-light text-dark d-none w-50 mx-auto text-center">No results found
+            </div>
+        </section>
+        <!-- spinner -->
+        <section id="spinner" class="text-center my-4 d-none">
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-secondary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+        </section>
+
+        <!-- search results -->
+        <section class="p-5 mx-auto">
+            <div id="search-results" class="row row-cols-1 row-cols-md-2 g-4">
+                <!-- <div class="col">
+                    <div class="card flex-row mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://covers.openlibrary.org/b/id/554106-M.jpg"
+                                    class="img-fluid rounded-start" alt="No Image Available" />
+                            </div>
+                            <div class="col-md-8 d-flex align-items-center">
+                                <div class="card-body d-flex flex-column align-items-start ">
+                                    <h5 class="card-title">javascript</h5>
+                                    <h6 class="card-title">By: Robert</h6>
+                                    <h6 class="card-title">Publisher: </h6>
+                                    <p class="card-text">First published in: </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+            </div>
+        </section>
+
     </main>
     <!-- js file -->
     <script src="js/api.js"></script>
