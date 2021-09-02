@@ -79,12 +79,12 @@ const displayResults = (books) => {
                 <h6 class="card-title">By<span class="text-primary">${
                   book.author_name
                     ? ` ${book.author_name[0]}</span>`
-                    : `Author not available`
+                    : `<span class="fst-italic"> Author not available</span>`
                 }</h6>
                 <h6 class="card-title">${
                   book.publisher
                     ? `Publisher: ${book.publisher[0]}`
-                    : `Publisher not available`
+                    : `<span class="fst-italic">Publisher not available</span>`
                 }</h6>
                 <p class="card-text">${
                   book.first_publish_year
