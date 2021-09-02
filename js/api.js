@@ -19,7 +19,15 @@ searchBtn.addEventListener("click", () => {
   spinner.classList.add("block");
   //fetch data from the server
   fetch(url)
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else if (res.status === 404) {
+        return Promise.reject("Error 404");
+      } else {
+        return Promise.reject("Error" + res.status);
+      }
+    })
     .then((data) => {
       //data error handler after fetch
       if (data.numFound === 0) {
